@@ -4259,3 +4259,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: -4,
 	},
 };
+
+photosynthesis: {
+        desc: "This pokemon heals 25% of its hp at the end of the turn in sunny weather.",
+        shortDesc: "If Sunny Day is active, This pokemon heals 25% of its hp at the end of the turn.",
+        onWeather(target, source, effect) {
+            if (target.hasItem('utilityumbrella')) return;
+            if (effect.id === 'sunnyday' || effect.id === 'desolateland') {
+                this.heal(target.baseMaxhp / 4, target, target);
+            }
+        },
+        name: "Photosynthesis",
+        rating: 5,
+        num: 165,
+    },
